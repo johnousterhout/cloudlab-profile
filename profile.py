@@ -1,4 +1,4 @@
-# Cloudlab profile for running Homa experiments.
+# CloudLab profile for running Homa experiments.
 
 import geni.aggregate.cloudlab as cloudlab
 import geni.portal as portal
