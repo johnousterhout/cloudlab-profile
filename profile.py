@@ -1,4 +1,7 @@
-# CloudLab profile for running Homa experiments.
+""" CloudLab profile for running Homa experiments
+Description:
+xyzzy
+"""
 
 import geni.aggregate.cloudlab as cloudlab
 import geni.portal as portal
@@ -9,7 +12,7 @@ pc = portal.Context()
 rspec = pg.Request()
 
 pc.defineParameter("node_type", "Type of nodes",
-portal.ParameterType.NODETYPE, "xl170", legalValues=[("c6525-100g", "c6525-100g",
+portal.ParameterType.NODETYPE, "xl170", legalValues=[("c6525-100g", "c6525-100g"),
                                                      ("c6525-25g", "c6525-25g"),
                                                      ("d6515", "d6515"),
                                                      ("m400", "m400"),
