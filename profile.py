@@ -1,5 +1,4 @@
-"""This is a description of your profile, it can be multi-line.
-CloudLab profile for running Homa experiments
+"""CloudLab profile for running Homa experiments
 Here is some additional description.
 
 Instructions:
@@ -109,10 +108,4 @@ for i in range(params.num_nodes):
     rspec.addResource(nodes[i])
 
 rspec.addResource(link)
-instructions = "None"
-desc = "A cluster of bare-metal nodes with configurable number and type."
-tour = igext.Tour()
-tour.Description(type=igext.Tour.TEXT, desc=desc)
-tour.Instructions(type=igext.Tour.MARKDOWN, inst=instructions)
-rspec.addTour(tour)
 pc.printRequestRSpec(rspec)
