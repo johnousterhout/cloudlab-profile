@@ -1,8 +1,7 @@
-"""CloudLab profile for running Homa experiments
-Here is some additional description.
+"""Configures a collection of nodes for running Homa experiments.
 
 Instructions:
-These are sample instructions
+None
 """
 
 import geni.aggregate.cloudlab as cloudlab
