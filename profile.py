@@ -1,6 +1,9 @@
 """ CloudLab profile for running Homa experiments
 Description:
 xyzzy
+
+Instructions:
+These are sample instructions
 """
 
 import geni.aggregate.cloudlab as cloudlab
