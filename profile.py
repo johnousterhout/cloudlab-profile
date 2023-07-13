@@ -1,6 +1,6 @@
-""" CloudLab profile for running Homa experiments
-Description:
-xyzzy
+"""This is a description of your profile, it can be multi-line.
+CloudLab profile for running Homa experiments
+Here is some additional description.
 
 Instructions:
 These are sample instructions
