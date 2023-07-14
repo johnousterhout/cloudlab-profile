@@ -27,7 +27,7 @@ pc.defineParameter("num_nodes", "Number of nodes to use.<br> Check cluster avail
 # The possible set of base disk-images that this cluster can be booted with.
 # The second field of every tuple is what is displayed on the cloudlab
 # dashboard.
-images = [ ("ouster5177v9", "ouster 5.17.7 v9"),
+images = [ ("homa6138", "Ubuntu 22 -> 6.1.38"),
            ("ouster5177v8", "ouster 5.17.7 v8"),
            ("ouster5177v7", "ouster 5.17.7 v7"),
            ("ouster5480v4", "ouster 5.4.80 v4"),
@@ -36,7 +36,7 @@ images = [ ("ouster5177v9", "ouster 5.17.7 v9"),
            ("Ubuntu 22", "Ubuntu 22"),
            ("Ubuntu 20.04", "Ubuntu 20.04") ]
 imageUrns = {}
-imageUrns["ouster5177v9"] = "urn:publicid:IDN+utah.cloudlab.us+image+homa-PG0:ouster5177v9"
+imageUrns["homa6138"] = "urn:publicid:IDN+utah.cloudlab.us+image+homa-PG0:homa6138"
 imageUrns["ouster5177v8"] = "urn:publicid:IDN+utah.cloudlab.us+image+ramcloud-PG0:ouster5177v8"
 imageUrns["ouster5177v7"] = "urn:publicid:IDN+utah.cloudlab.us+image+ramcloud-PG0:ouster5177v7"
 imageUrns["ouster5480v4"] = "urn:publicid:IDN+utah.cloudlab.us+image+ramcloud-PG0:ouster5480v4"
