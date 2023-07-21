@@ -37,7 +37,7 @@ images = [ ("homa6138", "Ubuntu 22 with 6.1.38 kernel"),
            ("Ubuntu 20.04", "Ubuntu 20.04") ]
 imageUrns = {}
 imageUrns["homa6138"] = "urn:publicid:IDN+utah.cloudlab.us+image+homa-PG0:homa6138"
-imageUrns["ouster5177v9"] = "urn:publicid:IDN+utah.cloudlab.us+image+ramcloud-PG0:ouster5177v9"
+imageUrns["ouster5177v9"] = "urn:publicid:IDN+utah.cloudlab.us+image+homa-PG0:ouster5177v9"
 imageUrns["ouster5177v8"] = "urn:publicid:IDN+utah.cloudlab.us+image+ramcloud-PG0:ouster5177v8"
 imageUrns["ouster5480v4"] = "urn:publicid:IDN+utah.cloudlab.us+image+ramcloud-PG0:ouster5480v4"
 imageUrns["ouster_5.4.3_v3"] = "urn:publicid:IDN+utah.cloudlab.us+image+ramcloud-PG0:ouster_5.4.3_v3"
