@@ -28,6 +28,7 @@ pc.defineParameter("num_nodes", "Number of nodes to use.<br> Check cluster avail
 # The second field of every tuple is what is displayed on the cloudlab
 # dashboard.
 images = [ ("homa6138", "Ubuntu 22 with 6.1.38 kernel"),
+           ("ouster5177v9", "Ubuntu 22 with 5.17.7 kernel"),
            ("ouster5177v8", "ouster 5.17.7 v8"),
            ("ouster5480v4", "ouster 5.4.80 v4"),
            ("ouster_5.4.3_v3", "ouster 5.4.3 v3"),
@@ -36,6 +37,7 @@ images = [ ("homa6138", "Ubuntu 22 with 6.1.38 kernel"),
            ("Ubuntu 20.04", "Ubuntu 20.04") ]
 imageUrns = {}
 imageUrns["homa6138"] = "urn:publicid:IDN+utah.cloudlab.us+image+homa-PG0:homa6138"
+imageUrns["ouster5177v9"] = "urn:publicid:IDN+utah.cloudlab.us+image+ramcloud-PG0:ouster5177v9"
 imageUrns["ouster5177v8"] = "urn:publicid:IDN+utah.cloudlab.us+image+ramcloud-PG0:ouster5177v8"
 imageUrns["ouster5480v4"] = "urn:publicid:IDN+utah.cloudlab.us+image+ramcloud-PG0:ouster5480v4"
 imageUrns["ouster_5.4.3_v3"] = "urn:publicid:IDN+utah.cloudlab.us+image+ramcloud-PG0:ouster_5.4.3_v3"
