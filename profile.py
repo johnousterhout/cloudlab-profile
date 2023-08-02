@@ -49,11 +49,11 @@ pc.defineParameter("image", "Disk Image",
         "The disk image used to boot cluster nodes.")
 pc.defineParameter("switch", "Preferred switch", portal.ParameterType.STRING, "None", advanced=False, groupId=None,
         legalValues=[("None", "None"),
-                     ("xl170-rack1", "xl170-rack1"),
-                     ("xl170-rack2", "xl170-rack2"),
-                     ("xl170-rack3", "xl170-rack3"),
-                     ("xl170-rack4", "xl170-rack4"),
-                     ("xl170-rack5", "xl170-rack5")])
+                     ("xl170-rack1", "xl170-rack1 (hp001-040)"),
+                     ("xl170-rack2", "xl170-rack2 (hp041-080)"),
+                     ("xl170-rack3", "xl170-rack3 (hp081-120)"),
+                     ("xl170-rack4", "xl170-rack4 (hp121-160)"),
+                     ("xl170-rack5", "xl170-rack5 (hp161-200)")])
 
 pc.defineParameter("attachDataset", "Attach /ouster dataset to node0", portal.ParameterType.BOOLEAN, True)
 nodes = []
