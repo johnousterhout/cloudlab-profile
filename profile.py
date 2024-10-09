@@ -57,7 +57,10 @@ pc.defineParameter("switch", "Preferred switch", portal.ParameterType.STRING, "N
                      ("xl170-rack4", "xl170-rack4 (hp121-160)"),
                      ("xl170-rack5", "xl170-rack5 (hp161-200)")])
 
-pc.defineParameter("attachDataset", "Attach /ouster dataset to node0", portal.ParameterType.BOOLEAN, True)
+pc.defineParameter("attachOusterDataset", "Attach /ouster dataset to node0",
+        portal.ParameterType.BOOLEAN, True)
+pc.defineParameter("attachNetnextDataset", "Attach /netnext dataset to node0",
+        portal.ParameterType.BOOLEAN, True)
 nodes = []
 params = pc.bindParameters()
 if params.num_nodes < 1:
@@ -94,11 +97,21 @@ for i in range(params.num_nodes):
 #   link.vlan_tagging = True
     link.link_multiplexing = True
 
-    # Attach dataset on the first node, if requested.
-    if i == 0 and params.attachDataset:
+    # Attach datasets on the first node, if requested.
+    if i == 0 and params.attachOusterDataset:
         iface = nodes[i].addInterface()
         fsnode = rspec.RemoteBlockstore("fsnode", "/ouster")
         fsnode.dataset = "urn:publicid:IDN+utah.cloudlab.us:ramcloud-pg0+ltdataset+ouster_builds"
+        fslink = rspec.Link("fslink")
+        fslink.addInterface(iface)
+        fslink.addInterface(fsnode.interface)
+        fslink.best_effort = True
+        fslink.vlan_tagging = True
+        fslink.link_multiplexing = True
+    if i == 0 and params.attachNetnextDataset:
+        iface = nodes[i].addInterface()
+        fsnode = rspec.RemoteBlockstore("fsnode", "/netnext")
+        fsnode.dataset = "urn:publicid:IDN+utah.cloudlab.us:homa-pg0+ltdataset+ouster_netnext"
         fslink = rspec.Link("fslink")
         fslink.addInterface(iface)
         fslink.addInterface(fsnode.interface)
