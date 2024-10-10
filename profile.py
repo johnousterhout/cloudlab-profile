@@ -111,15 +111,15 @@ for i in range(params.num_nodes):
         fslink.vlan_tagging = True
         fslink.link_multiplexing = True
     if i == 0 and params.attachNetnextDataset:
-        iface = nodes[i].addInterface()
-        fsnode = rspec.RemoteBlockstore("fsnode", "/netnext")
-        fsnode.dataset = "urn:publicid:IDN+utah.cloudlab.us:homa-pg0+ltdataset+ouster_netnext"
-        fslink = rspec.Link("fslink")
-        fslink.addInterface(iface)
-        fslink.addInterface(fsnode.interface)
-        fslink.best_effort = True
-        fslink.vlan_tagging = True
-        fslink.link_multiplexing = True
+        iface2 = nodes[i].addInterface()
+        fsnode2 = rspec.RemoteBlockstore("fsnode2", "/netnext")
+        fsnode2.dataset = "urn:publicid:IDN+utah.cloudlab.us:homa-pg0+ltdataset+ouster_netnext"
+        fslink2 = rspec.Link("fslink2")
+        fslin2.addInterface(iface2)
+        fslink2.addInterface(fsnode2.interface)
+        fslink2.best_effort = True
+        fslink2.vlan_tagging = True
+        fslink2.link_multiplexing = True
 
     rspec.addResource(nodes[i])
 
