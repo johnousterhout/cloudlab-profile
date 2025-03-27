@@ -38,7 +38,7 @@ images = [ ("net-next", "Ubuntu 22 with net-next kernel"),
            ("Ubuntu 22", "Ubuntu 22"),
            ("Ubuntu 20.04", "Ubuntu 20.04") ]
 imageUrns = {}
-imageUrns["net-next"] = "urn:publicid:IDN+utah.cloudlab.us+image+homa-PG0:net-next"
+imageUrns["net-next"] = "urn:publicid:IDN+utah.cloudlab.us+image+homa-PG0:net-next:1"
 imageUrns["homa6106"] = "urn:publicid:IDN+utah.cloudlab.us+image+homa-PG0:homa6106"
 imageUrns["homa6138"] = "urn:publicid:IDN+utah.cloudlab.us+image+homa-PG0:homa6138"
 imageUrns["ouster5177v9"] = "urn:publicid:IDN+utah.cloudlab.us+image+homa-PG0:ouster5177v9"
