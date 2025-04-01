@@ -39,7 +39,7 @@ images = [ ("homa6139", "Ubuntu 24 with 6.13.9 kernel"),
            ("Ubuntu 22", "Ubuntu 22"),
            ("Ubuntu 20.04", "Ubuntu 20.04") ]
 imageUrns = {}
-imageUrns["homa6139"] = "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU24-64-STD"
+imageUrns["homa6139"] = "urn:publicid:IDN+utah.cloudlab.us+image+homa-PG0:homa6139"
 imageUrns["net-next"] = "urn:publicid:IDN+utah.cloudlab.us+image+homa-PG0:net-next"
 imageUrns["homa6106"] = "urn:publicid:IDN+utah.cloudlab.us+image+homa-PG0:homa6106"
 imageUrns["homa6138"] = "urn:publicid:IDN+utah.cloudlab.us+image+homa-PG0:homa6138"
