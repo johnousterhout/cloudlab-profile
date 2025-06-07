@@ -4,13 +4,13 @@ Instructions:
 None
 """
 
-import geni.aggregate.cloudlab as cloudlab
 import geni.portal as portal
-import geni.rspec.pg as pg
-import geni.rspec.igext as igext
-import geni.urn as urn
+import geni.rspec.pg as rspec
+import geni.rspec.emulab
+
 pc = portal.Context()
-rspec = pg.Request()
+# rspec = pg.Request()
+request = pc.makeRequestRSpec()
 
 pc.defineParameter("node_type", "Type of nodes",
 portal.ParameterType.NODETYPE, "xl170", legalValues=[("c6620", "c6620"),
@@ -49,8 +49,8 @@ imageUrns["ouster5177v8"] = "urn:publicid:IDN+utah.cloudlab.us+image+ramcloud-PG
 imageUrns["ouster5480v4"] = "urn:publicid:IDN+utah.cloudlab.us+image+ramcloud-PG0:ouster5480v4"
 imageUrns["ouster_5.4.3_v3"] = "urn:publicid:IDN+utah.cloudlab.us+image+ramcloud-PG0:ouster_5.4.3_v3"
 imageUrns["ouster_4.15.18_v13"] = "urn:publicid:IDN+utah.cloudlab.us+image+ramcloud-PG0:ouster_4.15.18_v13"
-imageUrns["Ubuntu 22"] = urn.Image(cloudlab.Utah, "emulab-ops:UBUNTU22-64-STD")
-imageUrns["Ubuntu 20.04"] = urn.Image(cloudlab.Utah, "emulab-ops:UBUNTU20-64-STD")
+imageUrns["Ubuntu 22"] = "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD"
+imageUrns["Ubuntu 20.04"] = "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU20-64-STD"
 pc.defineParameter("image", "Disk Image",
         portal.ParameterType.IMAGE, images[0], images,
         "The disk image used to boot cluster nodes.")
@@ -66,65 +66,48 @@ pc.defineParameter("attachOusterDataset", "Attach /ouster dataset to node0",
         portal.ParameterType.BOOLEAN, True)
 pc.defineParameter("attachNetnextDataset", "Attach /netnext dataset to node0",
         portal.ParameterType.BOOLEAN, True)
-nodes = []
 params = pc.bindParameters()
-if params.num_nodes < 1:
-    pc.reportError(portal.ParameterError("You must choose a minimum of 1 node "))
 pc.verifyParameters()
-link = pg.LAN("link-0")
+
+lan = request.LAN("lan1")
+lan.best_effort = True
+lan.link_multiplexing = True
+lan.setJumboFrames()
+
 for i in range(params.num_nodes):
-    nodes.append(pg.RawPC("node%s" % i))
-    nodes[i].hardware_type = params.node_type
-    # Don't know of images other than the default for d430.
-    if params.node_type != "d430":
-        nodes[i].disk_image = imageUrns[params.image]
+    node = request.RawPC("node%s" % i)
+    node.hardware_type = params.node_type
+    node.disk_image = imageUrns[params.image]
     if params.switch != "None":
-        nodes[i].Desire(params.switch, 1.0)
+        node.Desire(params.switch, 1.0)
 
-    nodes[i].addService(pg.Execute(shell="bash", command="/local/setup_ssh.sh"))
+    node.addService(rspec.Execute(shell="bash", command="/local/setup_ssh.sh"))
 
-    if1 = nodes[i].addInterface("if1")
-    #if2 = nodes[i].addInterface("if2")
-    #if1.component_id = "eth1"
-    #if2.component_id = "eth2"
+    if1 = node.addInterface("if1")
     ip1 = "10.0.1." + str(i+1)
-    #ip2 = "10.0.1." + str(i+params.num_nodes+1)
-    if1.addAddress(pg.IPv4Address(ip1, "255.255.255.0"))
-    #if2.addAddress(pg.IPv4Address(ip2, "255.255.255.0"))
-    if params.node_type == "d430":
-        if2 = nodes[i].addInterface("if2")
-        ip2 = "10.0.1." + str(i+params.num_nodes+1)
-        if2.addAddress(pg.IPv4Address(ip2, "255.255.255.0"))
-        link2.addInterface(if2)
-    link.addInterface(if1)
-    link.best_effort = True
-
-#   link.vlan_tagging = True
-    link.link_multiplexing = True
+    if1.addAddress(rspec.IPv4Address(ip1, "255.255.255.0"))
+    lan.addInterface(if1)
 
     # Attach datasets on the first node, if requested.
     if i == 0 and params.attachOusterDataset:
-        iface = nodes[i].addInterface()
-        fsnode = rspec.RemoteBlockstore("fsnode", "/ouster")
+        iface = node.addInterface()
+        fsnode = request.RemoteBlockstore("fsnode", "/ouster")
         fsnode.dataset = "urn:publicid:IDN+utah.cloudlab.us:ramcloud-pg0+ltdataset+ouster_builds"
-        fslink = rspec.Link("fslink")
+        fslink = request.Link("fslink")
         fslink.addInterface(iface)
         fslink.addInterface(fsnode.interface)
         fslink.best_effort = True
         fslink.vlan_tagging = True
         fslink.link_multiplexing = True
     if i == 0 and params.attachNetnextDataset:
-        iface2 = nodes[i].addInterface()
-        fsnode2 = rspec.RemoteBlockstore("fsnode2", "/netnext")
+        iface2 = node.addInterface()
+        fsnode2 = request.RemoteBlockstore("fsnode2", "/netnext")
         fsnode2.dataset = "urn:publicid:IDN+utah.cloudlab.us:homa-pg0+ltdataset+ouster_netnext"
-        fslink2 = rspec.Link("fslink2")
+        fslink2 = request.Link("fslink2")
         fslink2.addInterface(iface2)
         fslink2.addInterface(fsnode2.interface)
         fslink2.best_effort = True
         fslink2.vlan_tagging = True
         fslink2.link_multiplexing = True
 
-    rspec.addResource(nodes[i])
-
-rspec.addResource(link)
-pc.printRequestRSpec(rspec)
+pc.printRequestRSpec(request)
