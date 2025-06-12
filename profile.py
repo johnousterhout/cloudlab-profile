@@ -66,6 +66,8 @@ pc.defineParameter("attachOusterDataset", "Attach /ouster dataset to node0",
         portal.ParameterType.BOOLEAN, True)
 pc.defineParameter("attachNetnextDataset", "Attach /netnext dataset to node0",
         portal.ParameterType.BOOLEAN, True)
+pc.defineParameter("cloneDatasets", "Clone dataset(s) before attaching",
+        portal.ParameterType.BOOLEAN, False)
 params = pc.bindParameters()
 pc.verifyParameters()
 
@@ -93,6 +95,8 @@ for i in range(params.num_nodes):
         iface = node.addInterface()
         fsnode = request.RemoteBlockstore("fsnode", "/ouster")
         fsnode.dataset = "urn:publicid:IDN+utah.cloudlab.us:ramcloud-pg0+ltdataset+ouster_builds"
+        if params.cloneDatasets:
+            fsnode.rwclone = True
         fslink = request.Link("fslink")
         fslink.addInterface(iface)
         fslink.addInterface(fsnode.interface)
@@ -103,6 +107,8 @@ for i in range(params.num_nodes):
         iface2 = node.addInterface()
         fsnode2 = request.RemoteBlockstore("fsnode2", "/netnext")
         fsnode2.dataset = "urn:publicid:IDN+utah.cloudlab.us:homa-pg0+ltdataset+ouster_netnext"
+        if params.cloneDatasets:
+            fsnode2.rwclone = True
         fslink2 = request.Link("fslink2")
         fslink2.addInterface(iface2)
         fslink2.addInterface(fsnode2.interface)
