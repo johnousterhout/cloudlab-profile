@@ -33,10 +33,6 @@ images = [ ("homa6139", "Ubuntu 24 with 6.13.9 kernel"),
            ("homa6106", "Ubuntu 22 with 6.10.6 kernel"),
            ("homa6138", "Ubuntu 22 with 6.1.38 kernel"),
            ("ouster5177v9", "Ubuntu 22 with 5.17.7 kernel"),
-           ("ouster5177v8", "ouster 5.17.7 v8"),
-           ("ouster5480v4", "ouster 5.4.80 v4"),
-           ("ouster_5.4.3_v3", "ouster 5.4.3 v3"),
-           ("ouster_4.15.18_v13", "ouster 4.15.18_v13"),
            ("Ubuntu 22", "Ubuntu 22"),
            ("Ubuntu 20.04", "Ubuntu 20.04") ]
 imageUrns = {}
@@ -45,10 +41,6 @@ imageUrns["net-next"] = "urn:publicid:IDN+utah.cloudlab.us+image+homa-PG0:net-ne
 imageUrns["homa6106"] = "urn:publicid:IDN+utah.cloudlab.us+image+homa-PG0:homa6106"
 imageUrns["homa6138"] = "urn:publicid:IDN+utah.cloudlab.us+image+homa-PG0:homa6138"
 imageUrns["ouster5177v9"] = "urn:publicid:IDN+utah.cloudlab.us+image+homa-PG0:ouster5177v9"
-imageUrns["ouster5177v8"] = "urn:publicid:IDN+utah.cloudlab.us+image+ramcloud-PG0:ouster5177v8"
-imageUrns["ouster5480v4"] = "urn:publicid:IDN+utah.cloudlab.us+image+ramcloud-PG0:ouster5480v4"
-imageUrns["ouster_5.4.3_v3"] = "urn:publicid:IDN+utah.cloudlab.us+image+ramcloud-PG0:ouster_5.4.3_v3"
-imageUrns["ouster_4.15.18_v13"] = "urn:publicid:IDN+utah.cloudlab.us+image+ramcloud-PG0:ouster_4.15.18_v13"
 imageUrns["Ubuntu 22"] = "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU22-64-STD"
 imageUrns["Ubuntu 20.04"] = "urn:publicid:IDN+emulab.net+image+emulab-ops//UBUNTU20-64-STD"
 pc.defineParameter("image", "Disk Image",
