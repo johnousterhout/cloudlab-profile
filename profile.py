@@ -66,7 +66,7 @@ pc.verifyParameters()
 lan = request.LAN("lan1")
 lan.best_effort = True
 lan.link_multiplexing = True
-lan.setJumboFrames()
+# lan.setJumboFrames()
 
 for i in range(params.num_nodes):
     node = request.RawPC("node%s" % i)
